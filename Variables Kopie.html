@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables</title>
+</head>
+<body>
+
+  <p> Erklärung von var, let and const</p>
+  <p> global scope und local scope</p>
+  <p> var ist function-scoped (local in der function), d.h. die var steht in der gesamten function und dem dazugeörigen block zür Verfügung</p>
+  <p> let und const sind block-scoped (local im einzelnen block), d.h. diese variablen stehen nur in dem jeweiligem block zur Verfügung</p>
+<p>die variables die im global scope erstellt werden (im script allgemein) stehen allen zur Verfügung (inklusive innerhalb functions und blöcke)</p>
+<p>wenn die variablen nicht im eigenen local bereich (block oder function) definiert sind, wird eine stufe up (parent) geschaut. also geht es aus dem block immer höher, bis letztendlich das global erreicht wird</p>
+
+<p>im Beispiel 2 wurden die variablen in der function neu deklariert. Somit nehmen die variablen diesen wert an (auch im block, weil der block innerhalb der function als child ist)</p>
+<p>im Beispiel 3 werden auch im block 2 neue variablen deklariert</p>
+<p>im Beispiel 4 wird z im block neu definiert (deklariert) und steht NUR im block zur Verfügung. Ebenso wird x (var) neu deklariert (im block), und steht somit in der gesamten function zur Verfügung das ist die besonderheit einer var variablen</p>
+<p>im nächsten schritt wird der infos aus console.log hier angezeigt</p>
+<p>test github</p>
+
+  <script>
+
+
+    var x = 1;
+    let y = 2;
+    const z = 3;
+
+// BEISPIEL 1
+    console.log('BEISPIEL 1');
+    console.log(`global: ${x}`);
+    console.log(`global: ${y}`);
+    console.log(`global: ${z}`);
+
+    function myFunction1() {
+        console.log(`function x: ${x}`);
+        console.log(`function y: ${y}`);
+        console.log(`function z: ${z}`);
+
+// dieses ist ein block innerhalb einer function
+      {
+        console.log(`block x: ${x}`);
+        console.log(`block y: ${y}`);
+        console.log(`block z: ${z}`);
+
+      }
+
+    }
+
+// die function ausführen
+    myFunction1();
+
+// BEISPIEL 2
+    console.log('BEISPIEL 2');
+    console.log(`global x: ${x}`);
+    console.log(`global y: ${y}`);
+    console.log(`global z: ${z}`);
+
+    function myFunction2() {
+        var x = 10;
+        const z = 5;
+
+        console.log(`function x: ${x}`);
+        console.log(`function y: ${y}`);
+        console.log(`function z: ${z}`);
+
+// dieses ist ein block innerhalb einer function
+      {
+        console.log(`block x: ${x}`);
+        console.log(`block y: ${y}`);
+        console.log(`block z: ${z}`);
+
+      }
+
+    }
+
+// die function ausführen
+    myFunction2();
+
+
+// BEISPIEL 3
+
+    console.log('BEISPIEL 3');
+    console.log(`global x: ${x}`);
+    console.log(`global y: ${y}`);
+    console.log(`global z: ${z}`);
+
+    function myFunction3() {
+      var x = 10;
+      const z = 5;
+
+        console.log(`function x: ${x}`);
+        console.log(`function y: ${y}`);
+        console.log(`function z: ${z}`);
+
+// dieses ist ein block innerhalb einer function
+      {
+        var x = 11;
+        const z = 6;
+        console.log(`block x: ${x}`);
+        console.log(`block y: ${y}`);
+        console.log(`block z: ${z}`);
+
+      }
+
+
+    }
+
+// die function ausführen
+    myFunction3();
+
+
+// BEISPIEL 4
+    console.log('BEISPIEL 4');
+    console.log(`global x: ${x}`);
+    console.log(`global y: ${y}`);
+    console.log(`global z: ${z}`);
+
+    function myFunction4() {
+      var x = 10;
+      const z = 5;       
+
+// dieses ist ein block innerhalb einer function
+      {
+        var x = 11; // in der gesamten function valid, function scoped
+        const z = 6; // nur in diesem block valid, block scoped
+        console.log(`block x: ${x}`);
+        console.log(`block y: ${y}`);
+        console.log(`block y: ${z}`);
+
+      }
+
+        console.log(`function x: ${x}`);
+        console.log(`function y: ${y}`);
+        console.log(`function z: ${z}`);
+
+    }
+
+// die function ausführen
+    myFunction4();
+
+
+
+  </script>
+</body>
+</html>
